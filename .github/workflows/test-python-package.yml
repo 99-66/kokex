@@ -12,8 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: 
-      image: 6199/mecab-base-py37:latest
+    container: 6199/mecab-base-py37:latest
     strategy:
       fail-fast: false
       matrix:
@@ -25,15 +24,18 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: ${{ matrix.python-version }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        python -m pip install black isort pytest
+        pip install black isort pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
     - name: Lint with isort and black
       run: |
         isort --check kokex
         black --check kokex
+
     - name: Test with pytest
       run: |
         bin/run_test.sh
