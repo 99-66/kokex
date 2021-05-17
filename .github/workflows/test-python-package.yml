@@ -15,7 +15,7 @@ jobs:
     container: 6199/mecab-base-py37:latest
     steps:
     - name: Checkout Project
-    - uses: actions/checkout@main
+      uses: actions/checkout@main
 
     - name: Install dependencies
       run: |
