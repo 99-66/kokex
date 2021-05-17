@@ -12,6 +12,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    container: 
+      image: 6199/mecab-base-py37:latest
     strategy:
       fail-fast: false
       matrix:
@@ -22,7 +24,6 @@ jobs:
     - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v2
       with:
-        images: 6199/mecab-base-py37
         python-version: ${{ matrix.python-version }}
     - name: Install dependencies
       run: |
